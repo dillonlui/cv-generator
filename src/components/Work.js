@@ -1,19 +1,19 @@
 import React from "react";
-import EducationPreview from "./EducationPreview"
+import WorkPreview from "./WorkPreview"
 
-export default class Education extends React.Component {
+export default class Work extends React.Component {
     constructor(){
         super()
         this.state={
-            numEdForm: 1,
-            school: '',
-            city: '',
-            degree: '',
-            schoolStart: '',
-            schoolEnd: '',
+            numWorkForm: 1,
+            company: '',
+            position: '',
+            jobDescription: '',
+            jobStart: '',
+            jobEnd: '',
             isEdit: true
         }
-        this.educationForm = this.educationForm.bind(this)
+        this.workForm = this.workForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -27,36 +27,35 @@ export default class Education extends React.Component {
         this.setState( {isEdit: !this.state.isEdit})
     }
 
-    educationForm() {
+    workForm() {
         return (
             <div>
                 <div>
                 <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
                     <input 
                         type="text" 
-                        id="school" 
-                        placeholder="School" 
+                        id="company" 
+                        placeholder="Company Name" 
                         onChange={this.handleChange}/>
                     <input 
                         type="text" 
-                        id="city" 
-                        placeholder="City" 
+                        id="position" 
+                        placeholder="Position Title" 
                         onChange={this.handleChange}/>
-                    <input 
-                        type="text" 
-                        id="degree" 
-                        placeholder="Degree" 
+                    <textarea  
+                        id="jobDescription" 
+                        placeholder="Job Description" 
                         onChange={this.handleChange}/>
                     <label>Start Date: 
                         <input 
                             type="date" 
-                            id="schoolStart" 
+                            id="jobStart" 
                             onChange={this.handleChange}/>
                     </label>
                     <label>End Date:
                         <input 
                             type="date" 
-                            id="schoolEnd" 
+                            id="jobEnd" 
                             onChange={this.handleChange}/>
                     </label>
                     <button>Save</button>
@@ -64,9 +63,9 @@ export default class Education extends React.Component {
                 </div>
                 <div>
                     <div style={{display: this.state.isEdit ? 'none' : 'block'}}>
-                        <EducationPreview data={this.state} />
+                        <WorkPreview data={this.state} />
                     <button onClick={this.handleSubmit}>Edit</button>
-            </div>
+                    </div>
                 </div>
             </div>
         )
@@ -76,8 +75,8 @@ export default class Education extends React.Component {
     render() {
         return (
             <div>
-                <h2>Education</h2>
-                {this.educationForm()}
+                <h2>Work Experience</h2>
+                {this.workForm()}
             </div>
         )
     }

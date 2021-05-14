@@ -1,4 +1,5 @@
 import React from "react";
+import GeneralPreview from "./GeneralPreview"
 
 class General extends React.Component {
     constructor(){
@@ -10,20 +11,27 @@ class General extends React.Component {
             email: '',
             phone: '',
             website: '',
+            isEdit: true
         }
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleChange(e){
         const { id, value} = e.target
         this.setState({[id]: value})
     }
+    handleSubmit(e){
+        e.preventDefault()
+        this.setState( {isEdit: !this.state.isEdit})
+    }
 
     render(){
     return (
         <div>
+            <div>
             <h2>General Information</h2>
-            <form className="generalForm">
+            <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
                 <input 
                     type="text" 
                     id="firstName" 
@@ -64,14 +72,14 @@ class General extends React.Component {
                 <input 
                     type="file" 
                     id="avatar" />
+
+                <button>Save</button>
             </form>
-            <h3>Your Information</h3>
-            <p>{this.state.firstName}</p>
-            <p>{this.state.lastName}</p>
-            <p>{this.state.location}</p>
-            <p>{this.state.email}</p>
-            <p>{this.state.phone}</p>
-            <p>{this.state.website}</p>
+            </div>
+            <div style={{display: this.state.isEdit ? 'none' : 'block'}}>
+                <GeneralPreview data={this.state} />
+                <button onClick={this.handleSubmit}>Edit</button>
+            </div>
         </div>
     )}
 }
