@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <div className="generalInfo">
         <General />
-        <Education />
+        {/* <Education /> */}
       </div>
     </div>
   );
