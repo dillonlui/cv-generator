@@ -28,10 +28,12 @@ class General extends React.Component {
 
     render(){
     return (
-        <div>
-            <div>
+        <div className="container">
             <h2>General Information</h2>
-            <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
+            <hr />
+            <div className="inputForm">
+                <div>
+                <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
                 <input 
                     type="text" 
                     id="firstName" 
@@ -64,17 +66,14 @@ class General extends React.Component {
                     value={this.state.phone}
                     onChange={this.handleChange}/>
                 <input 
-                    type="url" 
+                    type="text" 
                     id="website" 
                     placeholder="Website" 
                     value={this.state.website}
                     onChange={this.handleChange}/>
-                <input 
-                    type="file" 
-                    id="avatar" />
-
                 <button>Save</button>
-            </form>
+                </form>
+                </div>
             </div>
             <div style={{display: this.state.isEdit ? 'none' : 'block'}}>
                 <GeneralPreview data={this.state} />

@@ -6,9 +6,11 @@ export default function App() {
   return (
     <div>
         <header><h1>CV Generator</h1></header>
-        <General />
-        <Education />
-        <Work />
+        <main>
+          <General />
+          <Education />
+          <Work />
+        </main>
     </div>
   );
 }

@@ -30,7 +30,7 @@ export default class Work extends React.Component {
     workForm() {
         return (
             <div>
-                <div>
+                <div className="inputForm">
                 <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
                     <input 
                         type="text" 
@@ -46,18 +46,16 @@ export default class Work extends React.Component {
                         id="jobDescription" 
                         placeholder="Job Description" 
                         onChange={this.handleChange}/>
-                    <label>Start Date: 
-                        <input 
-                            type="date" 
-                            id="jobStart" 
-                            onChange={this.handleChange}/>
-                    </label>
-                    <label>End Date:
-                        <input 
-                            type="date" 
-                            id="jobEnd" 
-                            onChange={this.handleChange}/>
-                    </label>
+                    <input 
+                        type="text" 
+                        id="jobStart" 
+                        placeholder="From"
+                        onChange={this.handleChange}/>
+                    <input 
+                        type="text" 
+                        id="jobEnd"                            
+                        placeholder="To"
+                        onChange={this.handleChange}/>
                     <button>Save</button>
                 </form>
                 </div>
@@ -74,8 +72,9 @@ export default class Work extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h2>Work Experience</h2>
+                <hr />
                 {this.workForm()}
             </div>
         )

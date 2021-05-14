@@ -30,7 +30,7 @@ export default class Education extends React.Component {
     educationForm() {
         return (
             <div>
-                <div>
+                <div className="inputForm">
                 <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
                     <input 
                         type="text" 
@@ -46,19 +46,17 @@ export default class Education extends React.Component {
                         type="text" 
                         id="degree" 
                         placeholder="Degree" 
-                        onChange={this.handleChange}/>
-                    <label>Start Date: 
+                        onChange={this.handleChange}/> 
                         <input 
-                            type="date" 
+                            type="text" 
                             id="schoolStart" 
+                            placeholder="From"
                             onChange={this.handleChange}/>
-                    </label>
-                    <label>End Date:
                         <input 
-                            type="date" 
-                            id="schoolEnd" 
+                            type="text" 
+                            id="schoolEnd"
+                            placeholder="To" 
                             onChange={this.handleChange}/>
-                    </label>
                     <button>Save</button>
                 </form>
                 </div>
@@ -66,7 +64,7 @@ export default class Education extends React.Component {
                     <div style={{display: this.state.isEdit ? 'none' : 'block'}}>
                         <EducationPreview data={this.state} />
                     <button onClick={this.handleSubmit}>Edit</button>
-            </div>
+                    </div>
                 </div>
             </div>
         )
@@ -75,8 +73,9 @@ export default class Education extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h2>Education</h2>
+                <hr />
                 {this.educationForm()}
             </div>
         )
