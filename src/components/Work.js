@@ -1,81 +1,98 @@
 import React from "react";
-import WorkPreview from "./WorkPreview"
 
 export default class Work extends React.Component {
     constructor(){
         super()
         this.state={
-            numWorkForm: 1,
-            company: '',
-            position: '',
-            jobDescription: '',
-            jobStart: '',
-            jobEnd: '',
-            isEdit: true
+            workInputs: [{
+                company: '',
+                position: '',
+                jobDescription: '',
+                jobStart: '',
+                jobEnd: '',
+            }]
+            
         }
-        this.workForm = this.workForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.addWork = this.addWork.bind(this)
     }
 
     handleChange(e){
-        const { id, value} = e.target
-        this.setState({[id]: value})
+        let workInputs = [...this.state.workInputs]
+        workInputs[e.target.dataset.id][e.target.className] = e.target.value
+        this.setState({workInputs})
     }
-    handleSubmit(e){
-        e.preventDefault()
-        this.setState( {isEdit: !this.state.isEdit})
+    addWork(e) {
+        this.setState((prevState) => ({
+            workInputs: [...prevState.workInputs,
+                {
+                company: '',
+                position: '',
+                jobDescription: '',
+                jobStart: '',
+                jobEnd: '',
+                }
+            ]
+        }))
     }
-
-    workForm() {
-        return (
-            <div>
-                <div className="inputForm">
-                <form onSubmit={this.handleSubmit} style={{display: this.state.isEdit ? 'block' : 'none'}}>
-                    <input 
-                        type="text" 
-                        id="company" 
-                        placeholder="Company Name" 
-                        onChange={this.handleChange}/>
-                    <input 
-                        type="text" 
-                        id="position" 
-                        placeholder="Position Title" 
-                        onChange={this.handleChange}/>
-                    <textarea  
-                        id="jobDescription" 
-                        placeholder="Job Description" 
-                        onChange={this.handleChange}/>
-                    <input 
-                        type="text" 
-                        id="jobStart" 
-                        placeholder="From"
-                        onChange={this.handleChange}/>
-                    <input 
-                        type="text" 
-                        id="jobEnd"                            
-                        placeholder="To"
-                        onChange={this.handleChange}/>
-                    <button>Save</button>
-                </form>
-                </div>
-                <div>
-                    <div style={{display: this.state.isEdit ? 'none' : 'block'}}>
-                        <WorkPreview data={this.state} />
-                    <button onClick={this.handleSubmit}>Edit</button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
 
     render() {
+        let {workInputs} = this.state
         return (
             <div className="container">
                 <h2>Work Experience</h2>
                 <hr />
-                {this.workForm()}
+                <button onClick={this.addWork}>Add Work</button>
+            {
+                workInputs.map((val, idx) => {
+                    let companyId = `company-${idx}`,
+                        positionId = `position-${idx}`,
+                        jobDescriptionId = `jobDescription-${idx}`,
+                        jobStartId = `jobStart-${idx}`,
+                        jobEndId = `jobEndId-${idx}`
+                    
+                    return(
+                        <div key={idx}>
+                        <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+                    <input 
+                        type="text" 
+                        id={companyId}
+                        data-id={idx}
+                        className="company"
+                        placeholder="Company Name" 
+                        />
+                    <input 
+                        type="text" 
+                        id={positionId}
+                        data-id={idx}
+                        className="position"
+                        placeholder="Position Title" 
+                        />
+                    <textarea  
+                        id={jobDescriptionId}
+                        data-id={idx}
+                        className="jobDescription"
+                        placeholder="Job Description" 
+                        />
+                    <input 
+                        type="text" 
+                        id={jobStartId}
+                        data-id={idx}
+                        className="jobStart"
+                        placeholder="From"
+                        />
+                    <input 
+                        type="text" 
+                        id={jobEndId}
+                        data-id={idx}  
+                        className="jobEnd lastInput"                          
+                        placeholder="To"
+                        />
+                </form>
+                </div>
+                    )
+                })
+            }
             </div>
         )
     }
