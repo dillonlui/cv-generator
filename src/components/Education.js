@@ -30,7 +30,7 @@ export default class Education extends React.Component {
                 degree: '',
                 schoolStart: '',
                 schoolEnd: '',
-                isEdit: true}
+                }
         ]}))
     }
 
@@ -86,7 +86,7 @@ export default class Education extends React.Component {
                                         id={schoolEndId}
                                         data-id={idx}
                                         placeholder="To" 
-                                        className="schoolEnd"
+                                        className="schoolEnd lastInput"
                                         />
                                 </form>
                                 </div>
