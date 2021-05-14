@@ -30,6 +30,10 @@ input {
   
 }
 
+.lastInput {
+  margin-bottom: 50px;
+}
+
 textarea {
   resize: none;
   padding: 15px;
