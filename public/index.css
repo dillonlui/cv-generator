@@ -30,10 +30,6 @@ input {
   
 }
 
-.lastInput {
-  margin-bottom: 50px;
-}
-
 textarea {
   resize: none;
   padding: 15px;
@@ -54,4 +50,8 @@ button {
 }
 button:hover {
   background-color: #757a81;
+}
+
+.hidden {
+  display: none;
 }

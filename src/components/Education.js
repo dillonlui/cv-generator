@@ -1,4 +1,5 @@
 import React from "react";
+import EducationPreview from "./EducationPreview"
 
 export default class Education extends React.Component {
     constructor(){
@@ -10,11 +11,14 @@ export default class Education extends React.Component {
                 degree: '',
                 schoolStart: '',
                 schoolEnd: '',
+                isEdit: true
             }]
             
         }
         this.handleChange = this.handleChange.bind(this)
         this.addEducation = this.addEducation.bind(this)
+        this.handleClick = this.handleClick.bind(this)
+        // this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleChange(e){
@@ -30,9 +34,23 @@ export default class Education extends React.Component {
                 degree: '',
                 schoolStart: '',
                 schoolEnd: '',
+                isEdit: true
                 }
         ]}))
     }
+    handleClick(e) {
+        e.preventDefault()
+        let educationInputs = [...this.state.educationInputs]
+        educationInputs[e.target.id].isEdit = !this.state.educationInputs[e.target.id].isEdit
+        this.setState({educationInputs})
+    }
+    // Need to figure out delate functionality, currently bugs out preview after deleting
+    //
+    // handleDelete(e) {
+    //     e.preventDefault()
+    //     let educationInputs = this.state.educationInputs.splice(e.target.id, 1)
+    //     this.setState({educationInputs})
+    // }
 
     render() {
         let {educationInputs} = this.state
@@ -52,7 +70,8 @@ export default class Education extends React.Component {
                             
                             return( 
                                 <div key={idx}>
-                                <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+                                <div>
+                                <form onChange={this.handleChange} className={educationInputs[idx].isEdit ? '' : 'hidden'}>
                                     <input 
                                         type="text" 
                                         id={schoolId}
@@ -86,10 +105,17 @@ export default class Education extends React.Component {
                                         id={schoolEndId}
                                         data-id={idx}
                                         placeholder="To" 
-                                        className="schoolEnd lastInput"
+                                        className="schoolEnd"
                                         />
+                                    {/* <button id={idx} onClick={this.handleDelete}>Delete</button> */}
+                                    <button id={idx} onClick={this.handleClick}>Save</button>
                                 </form>
                                 </div>
+                                <div className={educationInputs[idx].isEdit ? 'hidden' : ''}>
+                                    <EducationPreview data={educationInputs[idx]} />
+                                    <button id={idx} onClick={this.handleClick}>Edit</button>
+                                </div>
+                            </div>
                             )
                         })
                     }
