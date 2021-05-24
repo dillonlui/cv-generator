@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.js": "/cv-generator/static/js/main.50c24eb6.chunk.js",
-    "main.js.map": "/cv-generator/static/js/main.50c24eb6.chunk.js.map",
+    "main.css": "/cv-generator/static/css/main.32f1b7e9.chunk.css",
+    "main.js": "/cv-generator/static/js/main.d818fd28.chunk.js",
+    "main.js.map": "/cv-generator/static/js/main.d818fd28.chunk.js.map",
     "runtime-main.js": "/cv-generator/static/js/runtime-main.4fe00d2f.js",
     "runtime-main.js.map": "/cv-generator/static/js/runtime-main.4fe00d2f.js.map",
-    "static/js/2.34070e41.chunk.js": "/cv-generator/static/js/2.34070e41.chunk.js",
-    "static/js/2.34070e41.chunk.js.map": "/cv-generator/static/js/2.34070e41.chunk.js.map",
+    "static/js/2.c02ab103.chunk.js": "/cv-generator/static/js/2.c02ab103.chunk.js",
+    "static/js/2.c02ab103.chunk.js.map": "/cv-generator/static/js/2.c02ab103.chunk.js.map",
     "index.html": "/cv-generator/index.html",
-    "static/js/2.34070e41.chunk.js.LICENSE.txt": "/cv-generator/static/js/2.34070e41.chunk.js.LICENSE.txt"
+    "static/css/main.32f1b7e9.chunk.css.map": "/cv-generator/static/css/main.32f1b7e9.chunk.css.map",
+    "static/js/2.c02ab103.chunk.js.LICENSE.txt": "/cv-generator/static/js/2.c02ab103.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4fe00d2f.js",
-    "static/js/2.34070e41.chunk.js",
-    "static/js/main.50c24eb6.chunk.js"
+    "static/js/2.c02ab103.chunk.js",
+    "static/css/main.32f1b7e9.chunk.css",
+    "static/js/main.d818fd28.chunk.js"
   ]
 }
