@@ -1,83 +1,75 @@
-import React from "react";
-import GeneralPreview from "./GeneralPreview"
+import React, { useState } from "react";
 
-export default class General extends React.Component {
-    constructor(){
-        super()
-        this.state = {
-            name: '',
-            location: '',
-            email: '',
-            phone: '',
-            website: '',
-            isEdit: true
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-    }
+const General = () => {
+    const [name, setName] = useState('')
+    const [location, setLocation] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [website, setWebsite] = useState('')
+    const [isEdit, setIsEdit] = useState(true)
 
-    handleChange(e){
-        const { id, value} = e.target
-        this.setState({[id]: value})
-    }
-
-    handleClick(e) {
+    function handleClick(e) {
         e.preventDefault()
-        this.setState((prevState) => ({isEdit: !prevState.isEdit}))
+        setIsEdit(!isEdit)
     }
 
-    render(){
     return (
         <div className="container">
             <h2>General Information</h2>
             <hr />
-            <div className={this.state.isEdit ? '' : 'hidden'}>
+            <div className={isEdit ? '' : 'hidden'}>
                 <div>
-                <form>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        placeholder="Name" 
-                        value={this.state.name}
-                        onChange={this.handleChange}
+                    <form>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Name"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
                         />
-                    <input 
-                        type="text" 
-                        id="location" 
-                        placeholder="Location" 
-                        value={this.state.location}
-                        onChange={this.handleChange}
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Location"
+                            value={location}
+                            onChange={e => setLocation(e.target.value)}
                         />
-                    <input 
-                        type="email" 
-                        id="email" 
-                        placeholder="Email" 
-                        value={this.state.email}
-                        onChange={this.handleChange}
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        placeholder="Phone Number" 
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
-                        value={this.state.phone}
-                        onChange={this.handleChange}
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Phone Number"
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            value={phone}
+                            onChange={e => setPhone(e.target.value)}
                         />
-                    <input 
-                        type="text" 
-                        id="website" 
-                        placeholder="Website" 
-                        value={this.state.website}
-                        onChange={this.handleChange}
+                        <input
+                            type="text"
+                            id="website"
+                            placeholder="Website"
+                            value={website}
+                            onChange={e => setWebsite(e.target.value)}
                         />
-                    <button onClick={this.handleClick}>Save</button>
-                </form>
+                        <button onClick={handleClick}>Save</button>
+                    </form>
                 </div>
             </div>
-            <div className={this.state.isEdit ? 'hidden' : ''}>
-                <GeneralPreview data={this.state} />
-                <button onClick={this.handleClick}>Edit</button>
+            <div className={isEdit ? 'hidden' : ''}>
+                <h2>{name}</h2>
+                <p>{location}</p>
+                <p>{email}</p>
+                <p>{phone}</p>
+                <p>{website}</p>
+                <button onClick={handleClick}>Edit</button>
             </div>
         </div>
-    )}
+    )
 }
+
+export default General
