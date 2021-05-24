@@ -5,12 +5,12 @@ import Work from "./components/Work";
 export default function App() {
   return (
     <div>
-        <header><h1>CV Generator</h1></header>
-        <main>
-          <General />
-          <Education />
-          <Work />
-        </main>
+      <header><h1>CV Generator</h1></header>
+      <main>
+        <General />
+        <Education />
+        <Work />
+      </main>
     </div>
   );
 }

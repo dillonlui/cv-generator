@@ -1,71 +1,84 @@
 import React, { useState } from "react";
 
 const General = () => {
-    const [name, setName] = useState('')
-    const [location, setLocation] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [website, setWebsite] = useState('')
-    const [isEdit, setIsEdit] = useState(true)
 
-    function handleClick(e) {
+    const [generalState, setGeneralState] = useState(
+        {
+            name: '',
+            location: '',
+            email: '',
+            phone: '',
+            website: '',
+            isEdit: true
+        }
+    )
+
+    const handleGeneralChange = (e) => setGeneralState({
+        ...generalState,
+        [e.target.name]: [e.target.value]
+    })
+
+    const handleClick = (e) => {
         e.preventDefault()
-        setIsEdit(!isEdit)
+        setGeneralState({
+            ...generalState,
+            isEdit: !generalState.isEdit
+        })
     }
 
     return (
         <div className="container">
             <h2>General Information</h2>
             <hr />
-            <div className={isEdit ? '' : 'hidden'}>
+            <div className={generalState.isEdit ? '' : 'hidden'}>
                 <div>
                     <form>
                         <input
                             type="text"
-                            id="name"
+                            name="name"
                             placeholder="Name"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
+                            value={generalState.name}
+                            onChange={handleGeneralChange}
                         />
                         <input
                             type="text"
-                            id="location"
+                            name="location"
                             placeholder="Location"
-                            value={location}
-                            onChange={e => setLocation(e.target.value)}
+                            value={generalState.location}
+                            onChange={handleGeneralChange}
                         />
                         <input
                             type="email"
-                            id="email"
+                            name="email"
                             placeholder="Email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            value={generalState.email}
+                            onChange={handleGeneralChange}
                         />
                         <input
                             type="tel"
-                            id="phone"
+                            name="phone"
                             placeholder="Phone Number"
                             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            value={phone}
-                            onChange={e => setPhone(e.target.value)}
+                            value={generalState.phone}
+                            onChange={handleGeneralChange}
                         />
                         <input
                             type="text"
-                            id="website"
+                            name="website"
                             placeholder="Website"
-                            value={website}
-                            onChange={e => setWebsite(e.target.value)}
+                            value={generalState.website}
+                            onChange={handleGeneralChange}
                         />
                         <button onClick={handleClick}>Save</button>
                     </form>
                 </div>
             </div>
-            <div className={isEdit ? 'hidden' : ''}>
-                <h2>{name}</h2>
-                <p>{location}</p>
-                <p>{email}</p>
-                <p>{phone}</p>
-                <p>{website}</p>
+            <div className={generalState.isEdit ? 'hidden' : ''}>
+                <h2>{generalState.name}</h2>
+                <p>{generalState.location}</p>
+                <p>{generalState.email}</p>
+                <p>{generalState.phone}</p>
+                <p>{generalState.website}</p>
                 <button onClick={handleClick}>Edit</button>
             </div>
         </div>
